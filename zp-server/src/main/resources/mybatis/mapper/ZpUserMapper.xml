@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.react.zpserver.mapper.ZpUserMapper">
+
+    <insert id="save" parameterType="com.react.zpserver.model.ZpUserDO"  useGeneratedKeys="true" keyProperty="id">
+        insert into t_zp_user(username,password,type,header,post,info,company,salary,create_time,update_time)
+        values (#{username},#{password},#{type},#{header},#{post},#{info},#{company},#{salary},#{createTime},#{updateTime})
+    </insert>
+
+    <select id="getAllZpUser" resultType="com.react.zpserver.model.ZpUserDO">
+        select * from t_zp_user
+    </select>
+
+    <select id="getZpUserByUsernameAndPassword" resultType="com.react.zpserver.model.ZpUserDO">
+        select *
+        from t_zp_user
+        where username = #{username} and password = #{password}
+    </select>
+
+    <select id="getZpUserByUsername" resultType="com.react.zpserver.model.ZpUserDO">
+        select *
+        from t_zp_user
+        where username = #{username}
+    </select>
+
+    <update id="updateZpUser" parameterType="com.react.zpserver.model.ZpUserDO">
+        update t_zp_user
+        set
+        password = #{password},
+        type = #{type},
+        header = #{header},
+        post = #{post},
+        info = #{info},
+        company = #{company},
+        salary = #{salary},
+        update_time = #{updateTime}
+        where id = #{id}
+    </update>
+
+    <select id="getZpUserById" resultType="com.react.zpserver.model.ZpUserDO">
+         select *
+        from t_zp_user
+        where id = #{id}
+    </select>
+</mapper>
